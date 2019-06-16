@@ -104,31 +104,38 @@ nav h1 a {
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
-  width: 100%;
-  background-color: darkblue;
-  align-items: center;
-  padding: 10px 0px 10px 0px;
+    width: 100%;
+    background-color: darkblue;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
 }
-.filter-options h2{
+.filter-options div{
+    font-family: Arial,sans-serif;
+    font-size: 16pt;
+    letter-spacing: 0;
+    margin: 10px;
+    padding: 0 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:360px;
+    text-align: -webkit-center;
+
+
+}
+.filter-options div label{
     color: white;
-    font-size: 1.7rem;
-    font-weight: normal;
-    line-height: 1;
-    text-align:center;
+    margin: 0 10px 0 10px;
+    width: 175px;
 }
 .filter-options select {
-  background-color: white;
-  border: 1px solid #fff;
-  font-family: Arial,sans-serif;
-  font-size: 11pt;
-  height: 35px;
-  letter-spacing: 0;
-  margin: 10px;
-  padding: 0 10px;
-  width: 200px;
-  display: block;
-  margin-left:auto;
-  margin-right: auto;
+    background-color: white;
+    width: 150px;
+    border: 1px solid #fff;
+    font-size: 16px;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -187,16 +194,12 @@ nav h1 a {
   text-transform: uppercase;
  
 }
-
 #restaurants-list li a:hover{
     color:black;
     background-color:cyan;
     font-weight:bolder;
     font-size:larger;
 }
-
-
-
 /* ====================== Restaurant Details ====================== */
 .inside header {
   position: fixed;
