@@ -189,7 +189,9 @@ createRestaurantHTML = (restaurant) => {
       labelIDs[i].id = (`${restaurant.name}_${i}`).replace(/\s/g, '');
   }
     labelIDs[4].setAttribute('aria-labelledby', `${labelIDs[1].id} ${labelIDs[2].id} ${labelIDs[3].id}`);
-  
+    labelIDs[4].setAttribute('role', 'button');
+    labelIDs[4].setAttribute('aria-details', 'Click for more information');
+
   return li
 }
 
