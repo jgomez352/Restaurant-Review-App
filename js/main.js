@@ -182,6 +182,14 @@ createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 
+  //Aria labeling
+  let labelIDs = li.children;
+
+  for (let i = 0; i < labelIDs.length; i++) {
+      labelIDs[i].id = (`${restaurant.name}_${i}`).replace(/\s/g, '');
+  }
+    labelIDs[4].setAttribute('aria-labelledby', `${labelIDs[1].id} ${labelIDs[2].id} ${labelIDs[3].id}`);
+  
   return li
 }
 

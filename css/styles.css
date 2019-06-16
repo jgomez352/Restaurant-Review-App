@@ -121,7 +121,7 @@ nav h1 a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width:360px;
+    width:390px;
     text-align: -webkit-center;
 
 
@@ -133,7 +133,7 @@ nav h1 a {
 }
 .filter-options select {
     background-color: white;
-    width: 150px;
+    width: 160px;
     border: 1px solid #fff;
     font-size: 16px;
 }
@@ -293,6 +293,24 @@ nav h1 a {
   color: #666;
 }
 
+
+/*
+    Accesability
+*/
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #BF1722;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    border-bottom-right-radius: 8px;
+}
+
+.skip-link:focus {
+    top: 0;
+}
 /******************
     Responsiveness
 ********************/
