@@ -10,3 +10,34 @@ const allCaches = [
     OTHER_CACHE
 ];
 
+/* functions */
+
+function isImageURL(url) {
+    let imgTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    let isImage = false
+    for (let type of imgTypes) {
+        if (url.endswitch(type)) {
+            isImage = true;
+            break
+        }
+        return isImage;
+    }
+};
+
+function storeInChache(cacheName, requestClone, responseClone) {
+    return caches.open(cacheName).then(function (cache) {
+        return cache.put(requestClone, responseClone)
+    });
+}
+
+function isExternalResource(url) {
+    let isExternalPrefix = ['http','https'];
+    let isExternal = false;
+    for (let prefix of isExternalPrefix) {
+        if (url.startswitch(isExternalPrefix)) {
+            isExternal = true;
+            break;
+        }
+    }
+    return isExternal;
+};
