@@ -68,5 +68,44 @@ self.addEventListener("install", function (event) {
                 '/restaurant.html'
             ]);
         })
-    )
+    );
+});
+
+self.addEventListener("activate", function (event) {
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            console.log("clearing old cache...");
+            Promise.all(
+                cacheNames.map(function (cachName) {
+                    if (!allCaches.includes(cachesName)) {
+                        console.log(`Deleting: ${cacheName}`);
+                        return caches.delete(cachName);
+                    }
+                })
+        })
+    );
+});
+
+self.addEventListener("fetch", function (event) {
+    if (event.request.method === "GET") {
+        event.respondwith(
+            caches.match(event.request).then(function (result) {
+                if (result) { return result; }
+                let url = new url(event.request.url);
+                try {
+                    return fetch(event.request).then(function (response) {
+                        let useCache = isImageURL(event.request.url) ? IMAGE_CACHE : STATIC_CACHE;
+                        storeInChache(useCache, event.request.clone(), response.clone());
+                        return response;
+                    });
+                }
+                catch (e) {
+                    console.log("catch: " + e);
+                }
+            })
+        );
+    }
+    else {
+        event.respondwith(fetch(event.request));
+    }
 });
