@@ -1,49 +1,21 @@
 /* static */
 
-const CACHE_VERSION = 5;
+const CACHE_VERSION = 6;
 const STATIC_CACHE = `static-cache-v${CACHE_VERSION}`;
-const IMAGES_CACHE = `images-cache-v`;
-const OTHERS_CACHE = `others-cache-v`;
 const allCaches = [
-    STATIC_CACHE,
-    IMAGES_CACHE,
-    OTHERS_CACHE
+    STATIC_CACHE
 ];
 
-/* functions */
+/* function(s) */
 
-function isImageURL(url) {
-    console.log('SW is checking image type.');
-    let imgTypes = ['jpg', 'jpeg', 'png', 'gif'];
-    let isImage = false;
-    for (let type of imgTypes) {
-        if (url.endsWith(type)) {
-            isImage = true;
-            break;
-        }
-        return isImage;
-    }
-};
 function storeInCache(cacheName, requestClone, responseClone) {
     console.log('SW is storing in cache.');
     return caches.open(cacheName).then(function (cache) {
         return cache.put(requestClone, responseClone)
     });
 }
-function isExternalResource(url) {
-    console.log('SW is checking url prefix.');
-    let isExternalPrefix = ['http','https'];
-    let isExternal = false;
-    for (let prefix of isExternalPrefix) {
-        if (url.startsWith(prefix)) {
-            isExternal = true;
-            break;
-        }
-    }
-    return isExternal;
-};
 
-/* Listeners */
+/* Listener(s) */
 
 self.addEventListener("install", function (event) {
     event.waitUntil(
@@ -94,11 +66,9 @@ self.addEventListener("fetch", function (event) {
         event.respondWith(
             caches.match(event.request).then(function (response) {
                 if (response) { return response; }
-                //let url = new URL(event.request.url);
                 try {
                     return fetch(event.request).then(function (response) {
-                        let useCache = isImageURL(event.request.url) ? IMAGES_CACHE : STATIC_CACHE;
-                        storeInCache(useCache, event.request.clone(), response.clone());
+                        storeInCache(STATIC_CACHE, event.request.clone(), response.clone());
                         return response;
                     });
                 }
