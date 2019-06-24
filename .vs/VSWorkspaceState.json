@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\js"
+    "\\css",
+    "\\data"
   ],
-  "SelectedNode": "\\js\\main.js",
+  "SelectedNode": "\\restaurant.html",
   "PreviewInSolutionExplorer": false
 }
