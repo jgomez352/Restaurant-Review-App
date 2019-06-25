@@ -22,6 +22,7 @@ self.addEventListener("install", function (event) {
         caches.open(STATIC_CACHE).then(function (cache) {
             console.log("Static cache: ", STATIC_CACHE);
             return cache.addAll([
+                "/",
                 'css/styles.css',
                 'data/restaurants.json',
                 'img/1.jpg',
@@ -58,8 +59,10 @@ self.addEventListener("activate", function (event) {
                         return caches.delete(cacheName);
                     }
                 })
-        )})
+            )
+        })
     );
+
 });
 self.addEventListener("fetch", function (event) {
     if (event.request.method === "GET") {

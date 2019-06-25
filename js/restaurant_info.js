@@ -7,7 +7,30 @@ const mapToken = 'pk.eyJ1IjoiamdvbWV6MzUyIiwiYSI6ImNqd3k2OGVjczEyOXI0M250M3NrMGR
  */
 document.addEventListener('DOMContentLoaded', (event) => {  
     initMap(mapToken);
+    RegisterSW();
 });
+/*
+ Register Service Worker
+ */
+
+function RegisterSW() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').then(function (reg) {
+            if (reg.installing) {
+                console.log('Service worker installing.');
+            } else if (reg.waiting) {
+                console.log('Service worker installed.');
+            } else if (reg.active) {
+                console.log('Service worker active.');
+            }
+            // Registration was successful
+            console.log('Registration succeeded. Scope: ' + reg.scope);
+        }).catch(function (error) {
+            // Registration Failed
+            console.log('Registration failed: ' + error);
+        })
+    }
+};
 
 /**
  * Initialize leaflet map
